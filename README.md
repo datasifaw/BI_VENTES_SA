@@ -291,7 +291,7 @@ Le projet intègre également des mesures de comparaison et de cumul temporel :
 - Répartition du chiffre d'affaires par catégorie.
 - Classement des meilleurs clients et produits.
 
-![Vue Exécutive](Images/01_vue_executive.png)
+![Vue Exécutive](Dashboard_POWER_BI_VENTES/01_vue_executive.png)
 
 ---
 
@@ -307,7 +307,7 @@ Le projet intègre également des mesures de comparaison et de cumul temporel :
 - Heatmap des ventes par mois et jour de la semaine.
 - Filtres interactifs par période, catégorie et produit.
 
-![Analyse des Ventes](Images/02_analyse_ventes.png)
+![Analyse des Ventes](Dashboard_POWER_BI_VENTES/02_analyse_ventes.png)
 
 ---
 
@@ -332,7 +332,7 @@ Le projet intègre également des mesures de comparaison et de cumul temporel :
 - CLIENT FIDEL
 - SUPER CLIENT
 
-![Analyse Clients](Images/03_analyse_clients.png)
+![Analyse Clients](Dashboard_POWER_BI_VENTES/03_analyse_clients.png)
 
 ---
 
@@ -354,7 +354,7 @@ Le projet intègre également des mesures de comparaison et de cumul temporel :
 
 **États de stock :** Disponible • Stock faible • En rupture
 
-![Analyse Produits](Images/04_analyse_produits.png)
+![Analyse Produits](Dashboard_POWER_BI_VENTES/04_analyse_produits.png)
 
 ---
 
@@ -373,7 +373,7 @@ Le projet intègre également des mesures de comparaison et de cumul temporel :
 - Classement des employés.
 - Évolution des performances.
 
-![Analyse Employés](Images/05_analyse_employes.png)
+![Analyse Employés](Dashboard_POWER_BI_VENTES/05_analyse_employes.png)
 
 ---
 
@@ -392,7 +392,7 @@ Le projet intègre également des mesures de comparaison et de cumul temporel :
 
 **Note :** les délais étudiés reposent sur les dates de commande, d'expédition et les dates demandées. Ils ne représentent pas nécessairement les délais réels de livraison au client.
 
-![Expéditions et Transporteurs](Images/06_expeditions.png)
+![Expéditions et Transporteurs](Dashboard_POWER_BI_VENTES/06_expeditions.png)
 
 ---
 
@@ -410,7 +410,7 @@ Le projet intègre également des mesures de comparaison et de cumul temporel :
 - Filtres géographiques.
 - Tableau détaillé des adresses clients.
 
-![Cartographie](Images/07_cartographie.png)
+![Cartographie](Dashboard_POWER_BI_VENTES/07_cartographie.png)
 
 ---
 
