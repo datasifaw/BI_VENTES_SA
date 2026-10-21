@@ -1,213 +1,254 @@
+# 📊 BI_VENTES_SA | Sales Analytics Dashboard
 
-# 📊 BI_VENTES_SA — Sales Analytics Dashboard
+### 🚀 End-to-End Business Intelligence Project
 
-## 📌 Présentation du projet
-
-**BI_VENTES_SA** est un projet de Business Intelligence réalisé avec **SQL Server, Power Query, DAX et Power BI**.
-
-L'objectif est de construire un tableau de bord décisionnel permettant d'analyser les performances commerciales d'une entreprise à travers plusieurs axes :
-
-* chiffre d'affaires ;
-* évolution des ventes ;
-* clients ;
-* produits et catégories ;
-* fournisseurs ;
-* employés ;
-* expéditions et transporteurs ;
-* répartition géographique des clients et du chiffre d'affaires.
-
-Le projet couvre l'ensemble du processus BI, depuis les données stockées dans SQL Server jusqu'à la création d'un dashboard interactif dans Power BI.
+**SQL Server • Power Query • Data Modeling • DAX • Power BI • GitHub**
 
 ---
 
-## 🎯 Objectifs
+## 🌟 Présentation du projet
 
-Le tableau de bord permet notamment de répondre aux questions suivantes :
+**BI_VENTES_SA** est un projet complet de Business Intelligence consacré à l'analyse des performances commerciales d'une entreprise.
 
-* Quel est le chiffre d'affaires global ?
-* Comment évoluent les ventes dans le temps ?
-* Quels sont les meilleurs clients ?
-* Quels produits génèrent le plus de chiffre d'affaires ?
-* Quelles catégories sont les plus performantes ?
-* Quels produits sont en rupture ou en stock faible ?
-* Quels employés réalisent le plus de ventes ?
-* Comment se répartissent les commandes entre les transporteurs ?
-* Quels pays et quelles villes génèrent le plus de chiffre d'affaires ?
-* Quels jours et quels mois présentent les meilleures performances commerciales ?
+Il repose sur une base de données relationnelle **SQL Server** et un tableau de bord interactif développé avec **Microsoft Power BI**.
 
----
+L'objectif est de transformer les données transactionnelles en indicateurs décisionnels pour faciliter le suivi de l'activité commerciale, l'identification des tendances et l'analyse des performances.
 
-## 🛠️ Technologies utilisées
+Le dashboard couvre sept domaines d'analyse : ventes, clients, produits, employés, expéditions, transporteurs et géographie.
 
-| Technologie         | Utilisation                             |
-| ------------------- | --------------------------------------- |
-| **SQL Server**      | Stockage et interrogation des données   |
-| **SQL**             | Requêtes, agrégations et vues           |
-| **Power Query / M** | Nettoyage et transformation des données |
-| **Power BI**        | Modélisation et visualisation           |
-| **DAX**             | KPI, mesures et analyses                |
-| **Git / GitHub**    | Versionnement et documentation          |
+### 🎯 Objectifs métier
+
+- Suivre le chiffre d'affaires brut et net.
+- Analyser l'évolution des ventes dans le temps.
+- Identifier les clients les plus rentables.
+- Étudier les performances des produits et catégories.
+- Surveiller les ruptures de stock.
+- Évaluer la contribution commerciale des employés.
+- Analyser les délais d'expédition et les transporteurs.
+- Visualiser la répartition géographique des clients et du chiffre d'affaires.
 
 ---
 
-## 🔄 Architecture du projet
+## 📸 Aperçu du dashboard
 
-Le processus BI utilisé est le suivant :
+### Vue Exécutive
 
-**SQL Server → Power Query → Modèle de données → DAX → Power BI Dashboard**
+![Vue Exécutive](Images/01_vue_executive.png)
 
-### 1. SQL Server
+*Vue synthétique des principaux indicateurs commerciaux.*
 
-La base contient notamment les tables :
+---
 
-* `Client`
-* `Commande`
-* `LigneCommandes`
-* `Produit`
-* `Categorie`
-* `Fournisseur`
-* `Employe`
-* `Transporteur`
-* `Division`
-* `Service`
-* `HistoriqueSalaires`
+## 📈 Key Performance Indicators
 
-### 2. Power Query
+Les résultats suivants correspondent au jeu de données utilisé dans le projet.
 
-Power Query est utilisé pour préparer les données avant leur exploitation.
+| Indicateur | Valeur |
+|:---|---:|
+| 💰 Chiffre d'affaires net | **≈ 6,46 M€** |
+| 🧾 Nombre de commandes | **5 456** |
+| 👥 Nombre de clients | **124** |
+| ✅ Clients actifs | **88** |
+| 📦 Nombre de produits | **78** |
+| 🛒 Quantité vendue | **≈ 239 K** |
+| ⚠️ Produits en rupture | **8** |
+| 📉 Taux de rupture | **≈ 10,3 %** |
+| 👨‍💼 Employés | **9** |
+| 🌍 Pays représentés | **27** |
+| 🏙️ Villes représentées | **93** |
 
-Exemples de transformations :
+> Les indicateurs sont calculés à partir des données du projet et peuvent varier selon les filtres appliqués dans Power BI.
 
-* nettoyage des données ;
-* correction des types ;
-* gestion des valeurs nulles ;
-* création de colonnes conditionnelles ;
-* création du statut de stock ;
-* création du nom complet des employés ;
-* construction d'une adresse complète pour la cartographie.
+---
 
-Exemple :
+## 🛠️ Stack technique
+
+| Technologie | Rôle dans le projet |
+|:---|:---|
+| **Microsoft SQL Server** | Stockage des données relationnelles |
+| **SQL** | Requêtes, contrôles et préparation des données |
+| **Power Query (M)** | Transformation et enrichissement des données |
+| **Power BI Desktop** | Modélisation et développement du dashboard |
+| **DAX** | Calcul des mesures et indicateurs de performance |
+| **GitHub Desktop** | Gestion des versions et publication |
+| **GitHub** | Documentation et partage du projet |
+
+---
+
+## 🏗️ Architecture BI
+
+Le projet suit une chaîne de traitement complète :
 
 ```text
-Adresse + Ville + Code Postal + Pays
-→ AdresseComplete
+                 ┌───────────────────────┐
+                 │      SQL SERVER       │
+                 │      Base Ventes      │
+                 └───────────┬───────────┘
+                             │
+                             ▼
+                 ┌───────────────────────┐
+                 │      POWER QUERY      │
+                 │ Nettoyage & Enrich.   │
+                 └───────────┬───────────┘
+                             │
+                             ▼
+                 ┌───────────────────────┐
+                 │    DATA MODELING      │
+                 │ Tables & Relations    │
+                 └───────────┬───────────┘
+                             │
+                             ▼
+                 ┌───────────────────────┐
+                 │          DAX          │
+                 │  KPI & Calculs métier │
+                 └───────────┬───────────┘
+                             │
+                             ▼
+                 ┌───────────────────────┐
+                 │       POWER BI        │
+                 │ Dashboard interactif  │
+                 └───────────────────────┘
 ```
 
-Le statut des produits permet également de distinguer :
+### Étapes de réalisation
 
-```text
-Disponible
-Stock faible
-En rupture
-```
+**1. Extraction des données**
+
+Connexion de Power BI à la base SQL Server `Ventes`.
+
+**2. Transformation**
+
+Préparation et enrichissement des données dans Power Query.
+
+**3. Modélisation**
+
+Création des relations entre les tables transactionnelles et les dimensions.
+
+**4. Calcul des indicateurs**
+
+Développement des mesures DAX nécessaires aux analyses.
+
+**5. Visualisation**
+
+Création de sept pages analytiques interactives avec une identité visuelle cohérente.
 
 ---
 
-## 🗂️ Modélisation des données
+## 🗂️ Modèle de données Power BI
 
-Le modèle Power BI est organisé autour des tables transactionnelles :
+Le modèle relationnel s'articule autour des tables **Commande** et **LigneCommandes**, associées aux différentes dimensions métier.
 
-* `Commande`
-* `LigneCommandes`
+### 📸 Schéma relationnel
 
-et de plusieurs dimensions :
+![Modèle de données Power BI](Documentation/modele_donnees.png)
 
-* Client
-* Produit
-* Catégorie
-* Fournisseur
-* Employé
-* Transporteur
-* Calendrier
+*Vue du modèle relationnel réalisée dans Power BI Desktop.*
 
-La table `Calendrier` permet d'effectuer les analyses temporelles par :
+### 🔗 Relations principales
 
-* année ;
-* trimestre ;
-* mois ;
-* jour ;
-* jour de la semaine.
+| Dimension / Table | Relation avec |
+|:---|:---|
+| `Client` | `Commande` |
+| `Employe` | `Commande` |
+| `Transporteur` | `Commande` |
+| `Calendrier` | `Commande` |
+| `Commande` | `LigneCommandes` |
+| `Produit` | `LigneCommandes` |
+| `Categorie` | `Produit` |
+| `Fournisseur` | `Produit` |
+
+La table `Calendrier` permet d'analyser les performances par année, trimestre, mois et jour de la semaine.
 
 ---
 
-# 📐 Mesures DAX principales
+## 🔄 Data Preparation — Power Query
 
-## Chiffre d'affaires
+Power Query est utilisé pour créer des champs métiers et préparer les données à l'analyse.
+
+### Transformations principales
+
+| Table | Transformation | Objectif |
+|:---|:---|:---|
+| `LigneCommandes` | `Montant Ligne` | Calcul du montant net après remise |
+| `Employe` | `Nom complet` | Identification lisible des employés |
+| `Produit` | `Statut Stock` | Classification des produits selon leur disponibilité |
+| `Client` | `AdresseComplete` | Préparation des données pour la cartographie |
+
+### Exemple — Montant net d'une ligne
+
+```powerquery
+[PrixUnitaire] * [Quantite] * (1 - [Remise])
+```
+
+### Exemple — Nom complet d'un employé
+
+```powerquery
+[Prenom] & " " & [Nom]
+```
+
+📄 **Documentation détaillée :** [Transformations Power Query](PowerQuery/transformations.md)
+
+---
+
+## 📐 DAX — Business Metrics
+
+Les indicateurs sont calculés à l'aide de mesures DAX regroupées dans une table dédiée `_Mesures`.
+
+### Chiffre d'affaires net
+
+```DAX
+CA Total =
+SUM ( LigneCommandes[Montant Ligne] )
+```
+
+### Chiffre d'affaires brut
 
 ```DAX
 CA Brut =
 SUMX (
     LigneCommandes,
-    LigneCommandes[PrixUnitaire] * LigneCommandes[Quantite]
+    LigneCommandes[PrixUnitaire] *
+    LigneCommandes[Quantite]
 )
 ```
 
-Le projet utilise également une mesure de **CA Net** tenant compte des remises.
-
----
-
-## Montant des remises
-
-```DAX
-Montant Remise =
-[CA Brut] - [CA Net]
-```
-
----
-
-## Taux de remise
+### Taux de remise
 
 ```DAX
 Taux de Remise =
 DIVIDE (
-    [Montant Remise],
+    [CA Brut] - [CA Total],
     [CA Brut],
     0
 )
 ```
 
----
-
-## Nombre de clients
-
-```DAX
-Nombre Clients =
-DISTINCTCOUNT ( Client[ClientId] )
-```
-
----
-
-## Nombre de commandes
+### Nombre de commandes
 
 ```DAX
 Nombre Commandes =
 DISTINCTCOUNT ( Commande[CommandeId] )
 ```
 
----
-
-## Nombre de produits
+### Clients actifs
 
 ```DAX
-Nombre Produits =
-DISTINCTCOUNT ( Produit[ProduitId] )
+Clients Actifs =
+DISTINCTCOUNT ( Commande[ClientId] )
 ```
 
----
-
-## Nombre de produits en rupture
+### Panier moyen
 
 ```DAX
-Nombre Produits en Rupture =
-CALCULATE (
-    [Nombre Produits],
-    Produit[EnRupture] = TRUE ()
+Panier Moyen =
+DIVIDE (
+    [CA Total],
+    [Nombre Commandes],
+    0
 )
 ```
 
----
-
-## Taux de rupture
+### Taux de rupture
 
 ```DAX
 Taux de Rupture =
@@ -218,237 +259,227 @@ DIVIDE (
 )
 ```
 
----
+### Analyse temporelle
 
-# 📊 Pages du dashboard
+Le projet intègre également des mesures de comparaison et de cumul temporel :
 
-## 1 — Vue Exécutive
+- Chiffre d'affaires de l'année précédente.
+- Évolution du chiffre d'affaires.
+- Évolution du chiffre d'affaires en pourcentage.
+- Chiffre d'affaires cumulé depuis le début de l'année (YTD).
+- Chiffre d'affaires cumulé depuis le début du mois (MTD).
 
-Vue synthétique destinée au pilotage global de l'activité commerciale.
-
-Principaux KPI :
-
-* CA Brut ;
-* CA Net ;
-* nombre de clients ;
-* quantité vendue ;
-* taux de remise ;
-* panier moyen ;
-* nombre de commandes.
-
-Analyses :
-
-* évolution du CA ;
-* CA par catégorie ;
-* Top clients ;
-* Top produits.
+📄 **Toutes les formules :** [Documentation des mesures DAX](DAX/mesures_dax.md)
 
 ---
 
-## 2 — Analyse des Ventes
+# 🖥️ Dashboard — 7 pages d'analyse
 
-Analyse temporelle détaillée des performances commerciales.
+## 01 | 📊 Vue Exécutive
 
-Elle contient notamment :
+**Objectif :** fournir une vision globale et synthétique de l'activité commerciale.
 
-* CA par année ;
-* CA par trimestre ;
-* analyse mensuelle ;
-* filtres par année, trimestre, catégorie, fournisseur et produit ;
-* heatmap des ventes.
+**Indicateurs et analyses :**
 
-### Heatmap Mois × Jour
+- CA brut et net.
+- Nombre de commandes.
+- Nombre de clients.
+- Quantité vendue.
+- Taux de remise.
+- Panier moyen.
+- Évolution mensuelle des ventes.
+- Répartition du chiffre d'affaires par catégorie.
+- Classement des meilleurs clients et produits.
 
-Une matrice avec mise en forme conditionnelle permet d'identifier les périodes générant le plus de chiffre d'affaires.
-
-Elle croise :
-
-**Mois × Jour de la semaine × CA Net**
-
----
-
-## 3 — Analyse Clients
-
-Cette page permet d'analyser le portefeuille clients.
-
-KPI :
-
-* nombre de clients ;
-* clients actifs ;
-* CA Net ;
-* commandes moyennes par client ;
-* panier moyen ;
-* CA moyen par client ;
-* nombre de commandes.
-
-Une segmentation des clients est également utilisée :
-
-* `CLIENT OCCASIONNEL`
-* `CLIENT FREQUENT`
-* `CLIENT FIDEL`
-* `SUPER CLIENT`
-
-Analyses :
-
-* Top clients ;
-* CA par typologie ;
-* nombre de commandes ;
-* détail des clients.
+![Vue Exécutive](Images/01_vue_executive.png)
 
 ---
 
-## 4 — Analyse Produits
+## 02 | 💰 Analyse des Ventes
 
-Cette page est consacrée aux performances produits et à la gestion des stocks.
+**Objectif :** identifier les tendances commerciales et les périodes de forte activité.
 
-KPI :
+**Analyses :**
 
-* nombre de produits ;
-* produits en rupture ;
-* taux de rupture ;
-* quantité vendue ;
-* prix moyen.
+- Évolution annuelle du chiffre d'affaires.
+- Analyse trimestrielle et mensuelle.
+- Répartition des ventes par période.
+- Heatmap des ventes par mois et jour de la semaine.
+- Filtres interactifs par période, catégorie et produit.
 
-Analyses :
-
-* Top produits ;
-* Top catégories ;
-* quantité vendue par catégorie ;
-* Top fournisseurs ;
-* catalogue produits ;
-* disponibilité et état du stock.
-
-Le rapport permet de filtrer les produits selon :
-
-```text
-Disponible
-Stock faible
-En rupture
-```
+![Analyse des Ventes](Images/02_analyse_ventes.png)
 
 ---
 
-## 5 — Analyse Employés
+## 03 | 👥 Analyse Clients
 
-Cette page analyse la contribution commerciale des employés.
+**Objectif :** comprendre la structure du portefeuille clients et identifier les clients stratégiques.
 
-KPI :
+**Analyses :**
 
-* nombre d'employés ;
-* CA Net ;
-* nombre de commandes ;
-* quantité vendue ;
-* CA moyen par employé ;
-* commandes moyennes par employé.
+- Nombre total de clients.
+- Clients actifs.
+- Chiffre d'affaires par client.
+- Top 5 clients.
+- Nombre de commandes par client.
+- Panier moyen.
+- Segmentation selon la fréquence des commandes.
 
-Analyses :
+**Typologie utilisée :**
 
-* Top employés ;
-* commandes par employé ;
-* quantité vendue ;
-* évolution du CA par employé ;
-* tableau détaillé des performances.
+- CLIENT OCCASIONNEL
+- CLIENT FREQUENT
+- CLIENT FIDEL
+- SUPER CLIENT
 
----
-
-## 6 — Expéditions & Transporteurs
-
-Cette page analyse les commandes expédiées et l'activité des transporteurs à partir des informations disponibles dans la base.
-
-Elle permet notamment d'étudier :
-
-* nombre de commandes expédiées ;
-* transporteurs ;
-* délais d'expédition ;
-* commandes expédiées à temps ;
-* répartition des commandes par transporteur ;
-* chiffre d'affaires associé aux transporteurs.
+![Analyse Clients](Images/03_analyse_clients.png)
 
 ---
 
-## 7 — Analyse Géographique
+## 04 | 📦 Analyse Produits
 
-Cette page permet d'analyser géographiquement le portefeuille clients et les performances commerciales.
+**Objectif :** évaluer les performances du catalogue et surveiller la disponibilité des produits.
 
-KPI :
+**Analyses :**
 
-* nombre de clients ;
-* clients actifs ;
-* CA Net ;
-* nombre de pays ;
-* nombre de villes.
+- Nombre total de produits.
+- Produits en rupture.
+- Taux de rupture.
+- Quantité vendue.
+- Prix moyen.
+- Top produits.
+- Performance des catégories.
+- Analyse des fournisseurs.
+- Catalogue détaillé et statut des stocks.
 
-Analyses :
+**États de stock :** Disponible • Stock faible • En rupture
 
-* carte des clients ;
-* répartition géographique du chiffre d'affaires ;
-* CA par pays ;
-* clients par pays ;
-* Top villes.
-
-Une colonne `AdresseComplete` a été créée dans Power Query pour améliorer la géolocalisation :
-
-```text
-Adresse, Ville, Code Postal, Pays
-```
+![Analyse Produits](Images/04_analyse_produits.png)
 
 ---
 
-# 🔎 Exemples d'indicateurs obtenus
+## 05 | 👨‍💼 Analyse Employés
 
-Sur le jeu de données utilisé, le dashboard permet notamment d'observer :
+**Objectif :** analyser la contribution commerciale des employés.
 
-| KPI                 |    Valeur |
-| ------------------- | --------: |
-| CA Net              | ≈ 6,46 M€ |
-| Clients             |       124 |
-| Clients actifs      |        88 |
-| Commandes           |     5 456 |
-| Produits            |        78 |
-| Quantité vendue     |    ≈ 239K |
-| Produits en rupture |         8 |
-| Taux de rupture     |  ≈ 10,3 % |
-| Pays représentés    |        27 |
-| Villes représentées |        93 |
+**Analyses :**
+
+- Nombre d'employés.
+- CA net.
+- Nombre de commandes.
+- Quantité vendue.
+- CA moyen par employé.
+- Commandes moyennes par employé.
+- Classement des employés.
+- Évolution des performances.
+
+![Analyse Employés](Images/05_analyse_employes.png)
 
 ---
 
-# 🎨 Design et expérience utilisateur
+## 06 | 🚚 Expéditions & Transporteurs
 
-Le dashboard utilise une identité visuelle cohérente inspirée du branding **SAZOTECH Solutions**.
+**Objectif :** analyser le processus d'expédition et l'activité des transporteurs.
 
-Les pages utilisent principalement :
+**Analyses :**
 
-* bleu clair comme couleur principale ;
-* arrière-plans clairs ;
-* cartes KPI ;
-* segments interactifs ;
-* graphiques homogènes ;
-* navigation entre les différentes analyses.
+- Nombre de commandes expédiées.
+- Commandes non expédiées.
+- Délais moyens d'expédition.
+- Commandes expédiées à temps.
+- Répartition des commandes par transporteur.
+- Chiffre d'affaires associé aux transporteurs.
 
-Des boutons de navigation permettent de passer rapidement entre :
+**Note :** les délais étudiés reposent sur les dates de commande, d'expédition et les dates demandées. Ils ne représentent pas nécessairement les délais réels de livraison au client.
+
+![Expéditions et Transporteurs](Images/06_expeditions.png)
+
+---
+
+## 07 | 🌍 Cartographie
+
+**Objectif :** analyser la répartition géographique des clients et du chiffre d'affaires.
+
+**Analyses :**
+
+- Carte géographique des clients.
+- Nombre de clients par pays.
+- Chiffre d'affaires par pays.
+- Top villes.
+- Nombre de pays et de villes.
+- Filtres géographiques.
+- Tableau détaillé des adresses clients.
+
+![Cartographie](Images/07_cartographie.png)
+
+---
+
+## 🎨 UI/UX — Design du dashboard
+
+Le rapport adopte une identité visuelle inspirée de **SAZOTECH SOLUTIONS**.
+
+### Principes de design
+
+- Palette principale bleue et cyan.
+- Arrière-plan clair.
+- Présentation homogène des KPI.
+- Graphiques interactifs.
+- Navigation entre les pages.
+- Filtres contextuels.
+- Organisation par domaine métier.
+
+### Navigation
+
+Le dashboard propose un parcours structuré :
 
 **Accueil → Vue Exécutive → Ventes → Clients → Produits → Employés → Expéditions → Cartographie**
 
-Un bouton de réinitialisation utilisant les **Bookmarks Power BI** permet également de remettre les filtres d'une page dans leur état initial.
+La réinitialisation des filtres peut être gérée avec les signets Power BI (*Bookmarks*).
 
 ---
 
-# 📂 Organisation du repository
+## 🔎 Analyses et constats
+
+Les indicateurs du jeu de données mettent notamment en évidence les éléments suivants :
+
+### 1. Activité commerciale
+
+Le chiffre d'affaires net atteint environ **6,46 M€**, pour **5 456 commandes**.
+
+### 2. Portefeuille clients
+
+Sur **124 clients**, **88 ont passé au moins une commande** dans les données analysées.
+
+### 3. Gestion des produits
+
+Le catalogue comprend **78 produits**, dont **8 signalés en rupture**, soit environ **10,3 %**.
+
+### 4. Couverture géographique
+
+Le portefeuille clients couvre **27 pays** et **93 villes**.
+
+Ces résultats constituent des observations descriptives. L'identification des causes, des tendances et des actions commerciales nécessite une analyse complémentaire des graphiques et des filtres.
+
+---
+
+## 📁 Structure du repository
 
 ```text
 BI_VENTES_SA/
 │
 ├── README.md
-│
 ├── .gitignore
 │
 ├── PowerBI/
 │   └── BI_VENTES_SA.pbix
 │
 ├── SQL/
-│   ├── requetes.sql
-│   └── vues.sql
+│   ├── 01_insertion_donnees_maroc.sql
+│   ├── 02_verification_donnees_maroc.sql
+│   ├── 03_insertion_donnees_madagascar.sql
+│   ├── 04_verification_donnees_madagascar.sql
+│   ├── 05_analyse_ventes_madagascar.sql
+│   └── 06_mise_a_jour_adresses_maroc_madagascar.sql
 │
 ├── DAX/
 │   └── mesures_dax.md
@@ -471,83 +502,129 @@ BI_VENTES_SA/
 
 ---
 
-# 🚀 Compétences mises en œuvre
+## 🚀 Installation et utilisation
 
-Ce projet met en pratique plusieurs compétences en Business Intelligence :
+### Prérequis
 
-### SQL
+- Microsoft Power BI Desktop.
+- SQL Server, pour l'actualisation depuis la base source.
+- Accès à la base de données `Ventes` ou à une base compatible.
 
-* SELECT
-* JOIN
-* GROUP BY
-* CASE
-* fonctions d'agrégation
-* vues SQL
-* analyse de données relationnelles
+### Étapes
 
-### Power Query
+**1. Cloner le repository**
 
-* nettoyage des données ;
-* transformation ;
-* colonnes conditionnelles ;
-* concaténation ;
-* gestion des valeurs nulles ;
-* préparation des dimensions.
+```bash
+git clone https://github.com/UTILISATEUR/BI_VENTES_SA.git
+```
 
-### Modélisation
+Remplacer `UTILISATEUR` par le nom du compte GitHub.
 
-* relations 1:N ;
-* tables de faits ;
-* dimensions ;
-* calendrier ;
-* propagation des filtres.
+**2. Ouvrir le rapport**
 
-### DAX
+Ouvrir le fichier :
 
-* `CALCULATE`
-* `DISTINCTCOUNT`
-* `SUM`
-* `SUMX`
-* `DIVIDE`
-* `AVERAGEX`
-* `FILTER`
-* `SWITCH`
-* `DATEDIFF`
+`PowerBI/BI_VENTES_SA.pbix`
+
+**3. Configurer la source de données**
+
+Dans Power BI Desktop :
+
+**Fichier → Options et paramètres → Paramètres des sources de données**
+
+Configurer la connexion SQL Server et les autorisations nécessaires.
+
+**4. Actualiser les données**
+
+Cliquer sur **Accueil → Actualiser**, après avoir vérifié que la base source est accessible et que son schéma est compatible.
+
+> Le rapport peut être consultable avec ses données déjà importées, si elles sont incluses dans le fichier PBIX. L'actualisation nécessite une connexion valide à la source SQL Server.
+
+---
+
+## 🧠 Compétences développées
+
+### Data Engineering & Preparation
+
+- Manipulation de données SQL.
+- Préparation des données avec Power Query.
+- Création de colonnes personnalisées.
+- Vérification des types et de la qualité des données.
+
+### Data Modeling
+
+- Modélisation relationnelle.
+- Relations un-à-plusieurs.
+- Tables transactionnelles et dimensions.
+- Table calendrier.
+- Gestion des filtres.
+
+### DAX & Business Analytics
+
+- `SUM`, `SUMX`, `CALCULATE`.
+- `DISTINCTCOUNT`, `DIVIDE`, `AVERAGEX`.
+- `FILTER`, `SWITCH`.
+- Fonctions d'intelligence temporelle.
+- Calcul et interprétation des KPI.
 
 ### Data Visualization
 
-* KPI ;
-* histogrammes ;
-* courbes ;
-* matrices ;
-* heatmap ;
-* Top/Bottom N ;
-* cartographie ;
-* filtres interactifs ;
-* tableaux détaillés.
+- Construction de dashboards interactifs.
+- Cartes KPI.
+- Histogrammes et courbes.
+- Heatmaps.
+- Cartographie.
+- Segments et navigation.
+- Présentation d'indicateurs métier.
+
+### Version Control
+
+- Organisation d'un repository.
+- Documentation Markdown.
+- Commits Git.
+- Publication avec GitHub Desktop.
 
 ---
 
-# 🔐 Sécurité
+## 🔐 Confidentialité et sécurité
 
-Les identifiants de connexion SQL Server, mots de passe et autres informations sensibles ne sont pas inclus dans ce repository.
+Les informations sensibles de connexion ne doivent pas être publiées dans le repository.
 
-La connexion à la base de données doit être configurée localement avant l'actualisation du rapport.
+Avant toute publication publique, il convient de vérifier :
 
----
-
-# 👤 Auteur
-
-**Sazotech**
-
-Projet Business Intelligence — **BI_VENTES_SA**
-
-**SQL Server • Power Query • DAX • Power BI**
+- l'absence de mots de passe et de tokens ;
+- l'absence de données personnelles ou confidentielles non autorisées ;
+- les données éventuellement intégrées au fichier PBIX ;
+- les scripts SQL et leurs éventuelles données d'exemple.
 
 ---
 
-## ⭐ À propos
+## 🔮 Perspectives d'amélioration
 
-Ce projet a été réalisé dans un objectif d'apprentissage et de démonstration des compétences en **Data Analytics et Business Intelligence**.
+Plusieurs évolutions peuvent être envisagées :
 
-Il illustre la construction complète d'une solution décisionnelle, depuis une base SQL Server jusqu'à un tableau de bord Power BI interactif.
+- Publication du dashboard dans Power BI Service.
+- Actualisation planifiée des données.
+- Gestion des droits d'accès.
+- Optimisation des performances DAX.
+- Versionnement au format Power BI Project (`.pbip`).
+- Ajout d'indicateurs commerciaux avancés.
+- Automatisation du déploiement.
+
+---
+
+## 👤 Auteur
+
+**Projet :** BI_VENTES_SA  
+**Domaine :** Business Intelligence & Data Analytics  
+**Technologies :** SQL Server • Power Query • DAX • Power BI
+
+---
+
+### ⭐ Conclusion
+
+**BI_VENTES_SA** illustre la réalisation d'un projet décisionnel de bout en bout, de la préparation des données SQL Server à la conception d'un dashboard Power BI interactif.
+
+Il met en pratique les compétences essentielles de la Business Intelligence : **préparation des données, modélisation, calcul d'indicateurs, visualisation et analyse métier**.
+
+**Si ce projet vous intéresse, n'hésitez pas à explorer le repository !**
