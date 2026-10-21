@@ -33,7 +33,7 @@ Le dashboard couvre sept domaines d'analyse : ventes, clients, produits, employ�
 
 ### Vue Exécutive
 
-![Vue Exécutive](Images/01_vue_executive.png)
+![Vue Exécutive](Dashboard_POWER_BI_VENTES/01_vue_executive.png)
 
 *Vue synthétique des principaux indicateurs commerciaux.*
 
