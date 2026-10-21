@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 750,
-        "y": 27.5
+        "x": 0,
+        "y": 51.25
       },
       "nodes": [
         {
@@ -62,8 +62,8 @@
         },
         {
           "location": {
-            "x": 0,
-            "y": 985
+            "x": 187.5,
+            "y": 780
           },
           "nodeIndex": "Fournisseur",
           "nodeLineageTag": "f74199e5-625b-42f7-ba62-3b562aa29289",
@@ -127,16 +127,16 @@
         },
         {
           "location": {
-            "x": 2020.3342727734612,
-            "y": 492.5
+            "x": 1682.8342727734612,
+            "y": 27.5
           },
           "nodeIndex": "_Mesures",
           "nodeLineageTag": "467ad30b-f1cf-44f8-a623-4504c62e7a96",
           "size": {
-            "height": 300,
+            "height": 975,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 10
         }
       ],
       "name": "Toutes les tables",
