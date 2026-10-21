@@ -1,0 +1,47 @@
+table Categorie
+	lineageTag: aae06d4b-2050-4686-9b59-7d9e411aa0e2
+
+	column CategorieId
+		dataType: int64
+		formatString: 0
+		lineageTag: 72c72715-593e-470a-991f-1240e6d736b9
+		summarizeBy: none
+		sourceColumn: CategorieId
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomCategorie
+		dataType: string
+		lineageTag: 874a017b-dab0-420d-b06a-2ef3401c666e
+		summarizeBy: none
+		sourceColumn: NomCategorie
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 60ffa986-2c3b-4c00-8aed-9f1a7b8c3004
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Categorie = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_Categorie = Ventes{[Schema="dbo",Item="Categorie"]}[Data],
+				    #"Espaces supprimés" = Table.TransformColumns(dbo_Categorie,{{"NomCategorie", Text.Trim, type text}}),
+				    #"Texte nettoyé" = Table.TransformColumns(#"Espaces supprimés",{{"NomCategorie", Text.Clean, type text}}),
+				    #"Espaces supprimés1" = Table.TransformColumns(#"Texte nettoyé",{{"Description", Text.Trim, type text}}),
+				    #"Texte nettoyé1" = Table.TransformColumns(#"Espaces supprimés1",{{"Description", Text.Clean, type text}})
+				in
+				    #"Texte nettoyé1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

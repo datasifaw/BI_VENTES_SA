@@ -1,0 +1,41 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Dimensions
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Faits
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["CA_Employe_Annee","catalogue_produit","CLIENT_ANGLAIS","Produits_En_Rupture","Employe","Categorie","Client","Typologie_client","Collation","LigneCommandes","Commande","Division","Entite","Fournisseur","HistoriqueSalaires","LOCATAIRES","MAISON","Produit","Service","sysdiagrams","Transporteur","_Mesures"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Categorie
+ref table Client
+ref table Commande
+ref table DateTableTemplate_03d98bcf-fdc4-4fbd-9ee2-e854500a023f
+ref table LocalDateTable_ae318a8b-4563-4b18-905f-fa32b353a6a5
+ref table LocalDateTable_37e59e84-1d80-4a9e-98f9-654cf17bcd41
+ref table Employe
+ref table LocalDateTable_c3da0f16-f8da-45c2-9884-a520bbf6621c
+ref table LocalDateTable_e0751203-7931-4fb9-ac3e-f5b9cca54ea6
+ref table Fournisseur
+ref table LigneCommandes
+ref table Produit
+ref table Transporteur
+ref table Calendrier
+ref table _Mesures
+
+ref cultureInfo fr-FR
+

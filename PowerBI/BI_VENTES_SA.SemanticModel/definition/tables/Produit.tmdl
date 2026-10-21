@@ -1,0 +1,119 @@
+table Produit
+	lineageTag: 4b2d4551-31bb-4e2d-8081-ea79f5e7a67f
+
+	column ProduitId
+		dataType: int64
+		formatString: 0
+		lineageTag: 28c3784b-40cf-4da8-afe7-03a2a2433ae2
+		summarizeBy: none
+		sourceColumn: ProduitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomProduit
+		dataType: string
+		lineageTag: c22bcc2d-f9eb-4539-b1a6-677ec10599ad
+		summarizeBy: none
+		sourceColumn: NomProduit
+
+		annotation SummarizationSetBy = Automatic
+
+	column FournisseurId
+		dataType: int64
+		formatString: 0
+		lineageTag: 13a55f8b-e414-4bc0-88ed-658da8ec41a3
+		summarizeBy: none
+		sourceColumn: FournisseurId
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategorieId
+		dataType: int64
+		formatString: 0
+		lineageTag: 730533ea-2c0a-4831-9d01-2f77402eae0b
+		summarizeBy: none
+		sourceColumn: CategorieId
+
+		annotation SummarizationSetBy = Automatic
+
+	column UniteContionnement
+		dataType: string
+		lineageTag: c1ad2929-0e7f-4a57-bcb5-08d9eadbd07a
+		summarizeBy: none
+		sourceColumn: UniteContionnement
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrixUnitaire
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: dda8f407-cb3a-46c5-9c04-7375556b2dcf
+		summarizeBy: sum
+		sourceColumn: PrixUnitaire
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column QuantiteEnStock
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f0f83bb-f55b-45df-a297-b57e3bbeea24
+		summarizeBy: sum
+		sourceColumn: QuantiteEnStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuantiteEnCommande
+		dataType: int64
+		formatString: 0
+		lineageTag: f10ad8ad-eea0-44f0-89c0-fe9203b23ee1
+		summarizeBy: sum
+		sourceColumn: QuantiteEnCommande
+
+		annotation SummarizationSetBy = Automatic
+
+	column NiveauReappro
+		dataType: int64
+		formatString: 0
+		lineageTag: 19e4ccc9-9e68-4283-a06f-0d706c6db892
+		summarizeBy: sum
+		sourceColumn: NiveauReappro
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnRupture
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 90c17603-cdb6-4d2a-abbe-e4a275b3b80d
+		summarizeBy: none
+		sourceColumn: EnRupture
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Statut Stock'
+		dataType: string
+		lineageTag: fdf8ad23-b953-47b0-8a0f-fd7b0884c9fc
+		summarizeBy: none
+		sourceColumn: Statut Stock
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Produit = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_Produit = Ventes{[Schema="dbo",Item="Produit"]}[Data],
+				    #"Espaces supprimés" = Table.TransformColumns(dbo_Produit,{{"NomProduit", Text.Trim, type text}}),
+				    #"Texte nettoyé" = Table.TransformColumns(#"Espaces supprimés",{{"NomProduit", Text.Clean, type text}}),
+				    #"Colonne conditionnelle ajoutée" = Table.AddColumn(#"Texte nettoyé", "Statut Stock", each if [EnRupture] = true then "En rupture" else if [QuantiteEnStock] < [NiveauReappro] then "Faible" else "Dispo")
+				in
+				    #"Colonne conditionnelle ajoutée"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

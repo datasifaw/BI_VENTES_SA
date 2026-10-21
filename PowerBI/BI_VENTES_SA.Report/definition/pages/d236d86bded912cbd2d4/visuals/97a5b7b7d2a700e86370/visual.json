@@ -1,0 +1,260 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "97a5b7b7d2a700e86370",
+  "position": {
+    "x": 68.246445497630333,
+    "y": 359.43127962085305,
+    "z": 9000,
+    "height": 324.54976303317534,
+    "width": 1113.1753554502368,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Commande"
+                    }
+                  },
+                  "Property": "CommandeId"
+                }
+              },
+              "queryRef": "Commande.CommandeId",
+              "nativeQueryRef": "Commande",
+              "displayName": "Commande"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Client"
+                    }
+                  },
+                  "Property": "Société"
+                }
+              },
+              "queryRef": "Client.Société",
+              "nativeQueryRef": "Client",
+              "displayName": "Client"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Transporteur"
+                    }
+                  },
+                  "Property": "NomSociete"
+                }
+              },
+              "queryRef": "Transporteur.NomSociete",
+              "nativeQueryRef": "Transporteur",
+              "displayName": "Transporteur"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Commande"
+                    }
+                  },
+                  "Property": "DateCommande"
+                }
+              },
+              "queryRef": "Commande.DateCommande",
+              "nativeQueryRef": "Date Commande",
+              "displayName": "Date Commande"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Commande"
+                    }
+                  },
+                  "Property": "DateDemandee"
+                }
+              },
+              "queryRef": "Commande.DateDemandee",
+              "nativeQueryRef": "DateDemandee"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Commande"
+                    }
+                  },
+                  "Property": "DateExpedition"
+                }
+              },
+              "queryRef": "Commande.DateExpedition",
+              "nativeQueryRef": "DateExpedition"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Commande"
+                    }
+                  },
+                  "Property": "Transport"
+                }
+              },
+              "queryRef": "Sum(Commande.Transport)",
+              "nativeQueryRef": "Transport"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Commande"
+                    }
+                  },
+                  "Property": "Délai Expédition"
+                }
+              },
+              "queryRef": "Sum(Commande.Délai Expédition)",
+              "nativeQueryRef": "Délai Expédition"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Commande"
+                    }
+                  },
+                  "Property": "Statut Expédition"
+                }
+              },
+              "queryRef": "Commande.Statut Expédition",
+              "nativeQueryRef": "Statut Expédition"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Commande"
+                  }
+                },
+                "Property": "CommandeId"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "274.5251155732374D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Client.Société"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6EA8FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRowsNew'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

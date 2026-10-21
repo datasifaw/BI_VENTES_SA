@@ -1,0 +1,133 @@
+table Fournisseur
+	lineageTag: f74199e5-625b-42f7-ba62-3b562aa29289
+
+	column FournisseurId
+		dataType: int64
+		formatString: 0
+		lineageTag: 0995d96e-e2cf-4fe3-bbe5-82f8f1da3bd1
+		summarizeBy: none
+		sourceColumn: FournisseurId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Société
+		dataType: string
+		lineageTag: d4be142d-6bd7-4f63-acc8-a1e6182324c8
+		summarizeBy: none
+		sourceColumn: Société
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contact
+		dataType: string
+		lineageTag: 45fd8907-8267-4427-a786-e098895bc807
+		summarizeBy: none
+		sourceColumn: Contact
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactTitre
+		dataType: string
+		lineageTag: 9fef0eac-3ef6-41a9-887f-0ee22e1ed451
+		summarizeBy: none
+		sourceColumn: ContactTitre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adresse
+		dataType: string
+		lineageTag: f67ec57d-267d-404d-8bf9-88dad3fe0ea3
+		summarizeBy: none
+		sourceColumn: Adresse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ville
+		dataType: string
+		lineageTag: 5cbae0e6-bb26-4937-ade2-689eb62c1203
+		summarizeBy: none
+		sourceColumn: Ville
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 0ceaeda0-55f6-44cd-a927-634006db1da5
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodePostal
+		dataType: string
+		lineageTag: d41ef4f7-0bbf-46e6-9f6b-758d7960b48e
+		summarizeBy: none
+		sourceColumn: CodePostal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pays
+		dataType: string
+		lineageTag: e8cb28df-71ac-46a2-8772-7f4ea2cd40b2
+		summarizeBy: none
+		sourceColumn: Pays
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telephone
+		dataType: string
+		lineageTag: 0fbdd253-d6f2-4ff9-9c17-dc533dedfb88
+		summarizeBy: none
+		sourceColumn: Telephone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fax
+		dataType: string
+		lineageTag: 147cdd86-c4c1-41ab-ad5c-82f8c4deb28e
+		summarizeBy: none
+		sourceColumn: Fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteWeb
+		dataType: string
+		lineageTag: f2b65e86-de7b-453c-97da-6127e8a9cc05
+		summarizeBy: none
+		sourceColumn: SiteWeb
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fournisseur = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_Fournisseur = Ventes{[Schema="dbo",Item="Fournisseur"]}[Data],
+				    #"Colonnes renommées" = Table.RenameColumns(dbo_Fournisseur,{{"NomSociete", "Société"}, {"ContactNom", "Contact"}}),
+				    #"Texte nettoyé" = Table.TransformColumns(#"Colonnes renommées",{{"Société", Text.Clean, type text}}),
+				    #"Espaces supprimés" = Table.TransformColumns(#"Texte nettoyé",{{"Société", Text.Trim, type text}}),
+				    #"Texte nettoyé1" = Table.TransformColumns(#"Espaces supprimés",{{"Société", Text.Clean, type text}}),
+				    #"Espaces supprimés1" = Table.TransformColumns(#"Texte nettoyé1",{{"Contact", Text.Trim, type text}}),
+				    #"Texte nettoyé2" = Table.TransformColumns(#"Espaces supprimés1",{{"Contact", Text.Clean, type text}}),
+				    #"Espaces supprimés2" = Table.TransformColumns(#"Texte nettoyé2",{{"ContactTitre", Text.Trim, type text}}),
+				    #"Texte nettoyé3" = Table.TransformColumns(#"Espaces supprimés2",{{"ContactTitre", Text.Clean, type text}}),
+				    #"Espaces supprimés3" = Table.TransformColumns(#"Texte nettoyé3",{{"Adresse", Text.Trim, type text}}),
+				    #"Texte nettoyé4" = Table.TransformColumns(#"Espaces supprimés3",{{"Adresse", Text.Clean, type text}}),
+				    #"Espaces supprimés4" = Table.TransformColumns(#"Texte nettoyé4",{{"Ville", Text.Trim, type text}}),
+				    #"Texte nettoyé5" = Table.TransformColumns(#"Espaces supprimés4",{{"Ville", Text.Clean, type text}}),
+				    #"Espaces supprimés5" = Table.TransformColumns(#"Texte nettoyé5",{{"Region", Text.Trim, type text}}),
+				    #"Texte nettoyé6" = Table.TransformColumns(#"Espaces supprimés5",{{"Region", Text.Clean, type text}}),
+				    #"Espaces supprimés6" = Table.TransformColumns(#"Texte nettoyé6",{{"CodePostal", Text.Trim, type text}}),
+				    #"Texte nettoyé7" = Table.TransformColumns(#"Espaces supprimés6",{{"CodePostal", Text.Clean, type text}}),
+				    #"Espaces supprimés7" = Table.TransformColumns(#"Texte nettoyé7",{{"Pays", Text.Trim, type text}}),
+				    #"Texte nettoyé8" = Table.TransformColumns(#"Espaces supprimés7",{{"Pays", Text.Clean, type text}})
+				in
+				    #"Texte nettoyé8"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

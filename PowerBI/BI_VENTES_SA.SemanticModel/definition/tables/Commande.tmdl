@@ -1,0 +1,130 @@
+table Commande
+	lineageTag: acb109ef-2d05-4c17-a9c2-840a14ab95a4
+
+	column CommandeId
+		dataType: int64
+		formatString: 0
+		lineageTag: 6bcb7dc4-4e1a-40a4-b0a5-ccfb57c53625
+		summarizeBy: none
+		sourceColumn: CommandeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClientId
+		dataType: string
+		lineageTag: f1a945fa-deb2-45f3-bda1-5dfdea4df52f
+		summarizeBy: none
+		sourceColumn: ClientId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeId
+		dataType: int64
+		formatString: 0
+		lineageTag: 41aa5526-cc83-45e2-b8db-db6653b63c45
+		summarizeBy: none
+		sourceColumn: EmployeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateCommande
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 0df4f1c0-8af9-4ceb-8d6c-e44b0f2f3dec
+		summarizeBy: none
+		sourceColumn: DateCommande
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateDemandee
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3b7250bb-006f-4cd8-803b-ceb72969ad0e
+		summarizeBy: none
+		sourceColumn: DateDemandee
+
+		variation Variation
+			isDefault
+			relationship: 99db2323-4e33-4cc1-8768-7dcdd260e6f3
+			defaultHierarchy: LocalDateTable_ae318a8b-4563-4b18-905f-fa32b353a6a5.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateExpedition
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 71e0b433-84c5-46a9-8a7a-7d3746181869
+		summarizeBy: none
+		sourceColumn: DateExpedition
+
+		variation Variation
+			isDefault
+			relationship: ca944347-b3ab-414e-80f1-95ea07df8cbb
+			defaultHierarchy: LocalDateTable_37e59e84-1d80-4a9e-98f9-654cf17bcd41.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransporteurId
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d9f3e65-5de8-4dfc-85a7-c1dd81ebcd6c
+		summarizeBy: none
+		sourceColumn: TransporteurId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transport
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 672f9aba-01f5-4d3e-a2f4-236a14395ffb
+		summarizeBy: sum
+		sourceColumn: Transport
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column 'Délai Expédition' =
+			
+			IF (
+			    NOT ISBLANK ( Commande[DateExpedition] ),
+			    DATEDIFF (
+			        Commande[DateCommande],
+			        Commande[DateExpedition],
+			        DAY
+			    )
+			)
+		formatString: 0
+		lineageTag: 4df9a174-fdfd-4cbf-a0a2-ad5cb84bffdb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Statut Expédition' =
+			
+			SWITCH (
+			    TRUE (),
+			    ISBLANK ( Commande[DateExpedition] ), "Non expédiée",
+			    Commande[DateExpedition] <= Commande[DateDemandee], "À temps",
+			    "En retard"
+			)
+		lineageTag: dfe7bc19-0593-43c4-bfcf-3ea5f280ec2d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Commande = m
+		mode: import
+		queryGroup: Faits
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_Commande = Ventes{[Schema="dbo",Item="Commande"]}[Data]
+				in
+				    dbo_Commande
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

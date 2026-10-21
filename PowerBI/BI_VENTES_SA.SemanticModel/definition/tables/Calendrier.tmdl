@@ -1,0 +1,124 @@
+table Calendrier
+	lineageTag: 19974342-6bec-42b0-9b0f-6b083a270583
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 8b720e9a-a316-4158-aca7-4978a1eee8c5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Année
+		formatString: 0
+		lineageTag: 2150b038-f3f7-475b-9979-ef60121e11d5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Année]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mois N°'
+		formatString: 0
+		lineageTag: 00f08ff9-1c26-42a7-9386-2b71c8d74c99
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mois N°]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nom du mois'
+		lineageTag: 8844e0c6-b213-4436-b6db-a3c5c427ce1e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nom du mois]
+		sortByColumn: 'Mois N°'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mois Court'
+		lineageTag: 08709aba-ca7f-43ec-8cc4-fd090c8b9928
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mois Court]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: bb8739a9-9459-464d-af84-3dea8549ef2c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jour
+		formatString: 0
+		lineageTag: 94ef071a-b2db-497d-8250-536c8ea52faa
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Jour]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Jour Semaine'
+		lineageTag: 8e96ef3e-4d0c-45f5-9ace-e669f6d303b1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Jour Semaine]
+		sortByColumn: 'Num Jour Semaine'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Num Jour Semaine'
+		formatString: 0
+		lineageTag: 654769cf-1813-4a0f-bb90-d3ba75338f4d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Num Jour Semaine]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Année-Mois
+		lineageTag: d5e2695c-25c4-495d-9e20-52585287ddc6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Année-Mois]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Année-Trimestre =
+			
+			FORMAT ( Calendrier[Date], "yyyy" )
+			    & "-T"
+			    & FORMAT ( Calendrier[Date], "Q" )
+		lineageTag: 5cbaa619-a5c5-4071-ae78-d47f153fa93f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendrier = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR (
+				        MIN ( Commande[DateCommande] ),
+				        MAX ( Commande[DateCommande] )
+				    ),
+				    "Année", YEAR ( [Date] ),
+				    "Mois N°", MONTH ( [Date] ),
+				    "Nom du mois", FORMAT ( [Date], "mmmm" ),
+				    "Mois Court", FORMAT ( [Date], "mmm" ),
+				    "Trimestre", "T" & FORMAT ( [Date], "Q" ),
+				    "Jour", DAY ( [Date] ),
+				    "Jour Semaine", FORMAT ( [Date], "dddd" ),
+				    "Num Jour Semaine", WEEKDAY ( [Date], 2 ),
+				    "Année-Mois", FORMAT([Date], "yyyy-MM")
+				)
+
+	annotation PBI_Id = 1a98253011014c849ae0299b215e85f9
+

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "d09ed4820cab45dcc9e3",
+  "position": {
+    "x": 12.132701421800947,
+    "y": 464.07582938388623,
+    "z": 5000,
+    "height": 247.2037914691943,
+    "width": 320,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Categorie"
+                    }
+                  },
+                  "Property": "NomCategorie"
+                }
+              },
+              "queryRef": "Categorie.NomCategorie",
+              "nativeQueryRef": "NomCategorie",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Qte Vendue"
+                }
+              },
+              "queryRef": "_Mesures.Qte Vendue",
+              "nativeQueryRef": "Qte Vendue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Mesures"
+                  }
+                },
+                "Property": "Qte Vendue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

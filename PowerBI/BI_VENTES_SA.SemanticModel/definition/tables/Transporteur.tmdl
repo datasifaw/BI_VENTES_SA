@@ -1,0 +1,45 @@
+table Transporteur
+	lineageTag: 162e955d-5402-40fc-b3e5-497f0a86b603
+
+	column TransporteurId
+		dataType: int64
+		formatString: 0
+		lineageTag: 79c86bcd-f9b5-43fb-a649-7c3bce18f144
+		summarizeBy: none
+		sourceColumn: TransporteurId
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomSociete
+		dataType: string
+		lineageTag: a74d261a-6359-4c32-850a-641e68092a20
+		summarizeBy: none
+		sourceColumn: NomSociete
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telephone
+		dataType: string
+		lineageTag: 72bb6306-a9db-4253-a3c3-889173baa59f
+		summarizeBy: none
+		sourceColumn: Telephone
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Transporteur = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_Transporteur = Ventes{[Schema="dbo",Item="Transporteur"]}[Data],
+				    #"Espaces supprimés" = Table.TransformColumns(dbo_Transporteur,{{"NomSociete", Text.Trim, type text}}),
+				    #"Texte nettoyé" = Table.TransformColumns(#"Espaces supprimés",{{"NomSociete", Text.Clean, type text}})
+				in
+				    #"Texte nettoyé"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU07",
+      "reportVersionAtImport": {
+        "visual": "2.11.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU07",
+          "path": "BaseThemes/CY26SU07.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "05547e45-54b8-4c23-a7f6-641b0b9674368720975536.png",
+          "path": "05547e45-54b8-4c23-a7f6-641b0b9674368720975536.png",
+          "type": "Image"
+        },
+        {
+          "name": "Background_SAZOTECH_POWER_BI2659982908205728.png",
+          "path": "Background_SAZOTECH_POWER_BI2659982908205728.png",
+          "type": "Image"
+        },
+        {
+          "name": "Background_SAZOTECH_POWER_BI28717169197000336.png",
+          "path": "Background_SAZOTECH_POWER_BI28717169197000336.png",
+          "type": "Image"
+        },
+        {
+          "name": "Background_SAZOTECH_POWER_BI31544887748571004.png",
+          "path": "Background_SAZOTECH_POWER_BI31544887748571004.png",
+          "type": "Image"
+        },
+        {
+          "name": "Background_SAZOTECH_POWER_BI45675781272787075.png",
+          "path": "Background_SAZOTECH_POWER_BI45675781272787075.png",
+          "type": "Image"
+        },
+        {
+          "name": "Background_SAZOTECH_POWER_BI6384487774712119.png",
+          "path": "Background_SAZOTECH_POWER_BI6384487774712119.png",
+          "type": "Image"
+        },
+        {
+          "name": "Background_SAZOTECH_POWER_BI9422163783259199.png",
+          "path": "Background_SAZOTECH_POWER_BI9422163783259199.png",
+          "type": "Image"
+        },
+        {
+          "name": "Background_SAZOTECH_POWER_BI9858984801186332.png",
+          "path": "Background_SAZOTECH_POWER_BI9858984801186332.png",
+          "type": "Image"
+        },
+        {
+          "name": "page_de_garde022154775400883953.png",
+          "path": "page_de_garde022154775400883953.png",
+          "type": "Image"
+        },
+        {
+          "name": "page_de_garde5354726379817533.png",
+          "path": "page_de_garde5354726379817533.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

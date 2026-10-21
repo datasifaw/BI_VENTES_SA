@@ -1,0 +1,296 @@
+table _Mesures
+	lineageTag: 467ad30b-f1cf-44f8-a623-4504c62e7a96
+
+	measure 'CA Net' = ```
+			
+			SUMX (
+			    LigneCommandes,
+			    LigneCommandes[PrixUnitaire]
+			        * LigneCommandes[Quantite]
+			        * (1 - LigneCommandes[Remise])
+			)
+			
+			
+			
+			```
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
+		lineageTag: 4ee57057-5f2f-4598-a3af-7f7d2c1435e5
+
+	measure 'Nombre Clients' =
+			
+			DISTINCTCOUNT ( Client[ClientId] )
+		formatString: 0
+		lineageTag: 9feb2f3a-fcc3-48da-accc-dd445d409d0b
+
+	measure 'Qte Vendue' =
+			
+			SUM ( LigneCommandes[Quantite] )
+		formatString: 0
+		lineageTag: d13563d6-fc0d-464a-829e-43f7ca8b49bd
+
+	measure 'Panier Moyen' =
+			
+			DIVIDE ( [CA Net], [Nombre Commandes] )
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
+		lineageTag: 644f870f-cc07-4c47-93d4-5aac103791f9
+
+	measure 'Clients Actifs' =
+			
+			DISTINCTCOUNT ( Commande[ClientId] )
+		formatString: 0
+		lineageTag: 8bec62d3-10d2-4767-98af-faec033df698
+
+	measure 'CA Brut' =
+			
+			SUMX (
+			    LigneCommandes,
+			    LigneCommandes[PrixUnitaire] * LigneCommandes[Quantite]
+			)
+		formatString: #,0.0\ "€";-#,0.0\ "€";#,0.0\ "€"
+		lineageTag: bc78038a-4a50-42ec-8214-ba277a3c5220
+
+	measure 'Montant Remise' =
+			
+			[CA Brut] - [CA Net]
+		lineageTag: 59eadfb3-49f0-4dd0-80d8-3a85782fc9df
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Taux de Remise' =
+			
+			DIVIDE (
+			    [Montant Remise],
+			    [CA Brut],
+			    0
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 0bb48d9b-46b4-483c-85c5-49ab67506c41
+
+	measure 'Nombre Produits' =
+			
+			DISTINCTCOUNT ( Produit[ProduitId] )
+		formatString: 0
+		lineageTag: dd5ddb5c-97c8-4764-a570-6250bbac116a
+
+	measure 'Nombre Employés' =
+			
+			DISTINCTCOUNT ( Employe[EmployeId] )
+		formatString: 0
+		lineageTag: f00aecf7-ce15-4eea-ae64-8f568d7bfadb
+
+	measure 'Nombre Fournisseurs' =
+			
+			DISTINCTCOUNT ( Fournisseur[FournisseurId] )
+		formatString: 0
+		lineageTag: 7655d509-4353-4b18-91c0-bcbcd67e5761
+
+	measure 'Nombre Transporteurs' =
+			
+			DISTINCTCOUNT ( Transporteur[TransporteurId] )
+		formatString: 0
+		lineageTag: 48c7c1e4-0dad-48f1-b15a-9e45638b5835
+
+	measure 'Nombre Lignes Commande' =
+			
+			COUNTROWS ( LigneCommandes )
+		formatString: 0
+		lineageTag: 89d58a3f-54bf-45a5-98a0-45cec3b7c1d0
+
+	measure 'Nombre Produits en Rupture' =
+			
+			CALCULATE (
+			    [Nombre Produits],
+			    Produit[EnRupture] = TRUE ()
+			)
+		formatString: 0
+		lineageTag: 5aea28fc-5379-4162-8647-993a609fcb4b
+
+	measure 'Taux de Rupture' =
+			
+			DIVIDE (
+			    [Nombre Produits en Rupture],
+			    [Nombre Produits],
+			    0
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 51543fa1-68f7-416a-b9f1-799363c0991a
+
+	measure 'Nombre Commandes' =
+			
+			DISTINCTCOUNT ( Commande[CommandeId] )
+		formatString: 0.0
+		lineageTag: 3d6d24a6-c323-4e5a-b95b-60b65af0c3ea
+
+	measure 'CA Moyen par Client' =
+			
+			DIVIDE (
+			    [CA Brut],
+			    [Clients Actifs],
+			    0
+			)
+		formatString: #,0.0\ "€";-#,0.0\ "€";#,0.0\ "€"
+		lineageTag: 688ea594-a127-43a8-8085-73876143873e
+
+	measure 'Commandes Moyennes par Client' =
+			
+			DIVIDE (
+			    [Nombre Commandes],
+			    [Clients Actifs],
+			    0
+			)
+		formatString: 0.00
+		lineageTag: 86495a35-2c1f-44da-b33d-183f405d75e8
+
+	measure 'Prix Moyen Produit' =
+			
+			AVERAGE ( Produit[PrixUnitaire] )
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
+		lineageTag: 9610f646-8738-405c-b396-394a16e5c198
+
+	measure 'CA Moyen par Employé' =
+			
+			DIVIDE (
+			    [CA Net],
+			    [Nombre Employés],
+			    0
+			)
+		lineageTag: 577328d1-28b9-49f7-abe7-d5bd67853b14
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Commandes Moyennes par Employé' =
+			
+			DIVIDE (
+			    [Nombre Commandes],
+			    [Nombre Employés],
+			    0
+			)
+		formatString: 0
+		lineageTag: c43b1de1-efe7-46c4-a507-c92928628466
+
+	measure 'Commandes Expédiées' =
+			
+			CALCULATE (
+			    [Nombre Commandes],
+			    NOT ISBLANK ( Commande[DateExpedition] )
+			)
+		formatString: 0
+		lineageTag: 96cd5053-9ec9-423b-b3fe-9b0f08d7902a
+
+	measure 'Commandes Non Expédiées' =
+			
+			CALCULATE (
+			    [Nombre Commandes],
+			    ISBLANK ( Commande[DateExpedition] )
+			)
+		formatString: 0
+		lineageTag: 5b5c8b36-2a88-4cb4-a70a-df9e35fc61a2
+
+	measure 'Taux Expédition' =
+			
+			DIVIDE (
+			    [Commandes Expédiées],
+			    [Nombre Commandes],
+			    0
+			)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: bbd6ba54-dd8e-4b7d-9634-e5910fab5381
+
+	measure 'Moyen Expédition' =
+			
+			FORMAT(
+			    AVERAGEX(
+			        FILTER(
+			            Commande,
+			            NOT ISBLANK(Commande[DateExpedition])
+			        ),
+			        DATEDIFF(
+			            Commande[DateCommande],
+			            Commande[DateExpedition],
+			            DAY
+			        )
+			    ),
+			    "0,0"
+			)
+			& " jrs"
+		lineageTag: 3c5bef0f-8b68-43fe-a6e9-031ec4ae22cf
+
+	measure 'Commandes Expédiées à Temps' =
+			
+			CALCULATE (
+			    [Nombre Commandes],
+			    FILTER (
+			        Commande,
+			        NOT ISBLANK ( Commande[DateExpedition] )
+			            && Commande[DateExpedition] <= Commande[DateDemandee]
+			    )
+			)
+		formatString: 0
+		lineageTag: 75527eae-4623-455e-b293-8d1b6f9e9ff9
+
+	measure 'Taux Expédition à Temps' =
+			
+			DIVIDE (
+			    [Commandes Expédiées à Temps],
+			    [Commandes Expédiées],
+			    0
+			)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 49e617e7-16ac-444f-9657-bc866cec6e72
+
+	measure 'Commandes Expédiées en Retard' =
+			
+			[Commandes Expédiées] - [Commandes Expédiées à Temps]
+		formatString: 0
+		lineageTag: a3e0f231-eaac-4403-b184-823edc459188
+
+	measure 'Coût Total Transport' =
+			
+			SUM ( Commande[Transport] )
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
+		lineageTag: 4ed5e83b-30f7-403f-bf1d-3d549fc88a0e
+
+	measure 'Coût Moyen Transport' =
+			
+			AVERAGE ( Commande[Transport] )
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: abf6c0f2-7e58-4a32-a480-99a234afd299
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	measure 'Coût Transport par Commande' =
+			
+			DIVIDE (
+			    [Coût Total Transport],
+			    [Nombre Commandes],
+			    0
+			)
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 1dd9075d-1447-49e3-8358-8ad69ad5a8e0
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	measure 'Nombre de Pays' =
+			
+			DISTINCTCOUNT ( Client[Pays] )
+		formatString: 0
+		lineageTag: 7cc80a25-b5b2-4879-aa4c-cc07f0964142
+
+	measure 'Nombre de Villes' =
+			
+			DISTINCTCOUNT ( Client[Ville] )
+		formatString: 0
+		lineageTag: 0a72664c-899f-43cd-80f4-339ea8983db3
+
+	partition _Mesures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Colonne 1" = _t]),
+				    #"Type modifié" = Table.TransformColumnTypes(Source,{{"Colonne 1", type text}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"Colonne 1"})
+				in
+				    #"Colonnes supprimées"
+
+	annotation PBI_ResultType = Table
+

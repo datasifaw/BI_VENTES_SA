@@ -1,0 +1,149 @@
+table Client
+	lineageTag: da409d20-d89f-45cb-a311-98459872a81e
+
+	column ClientId
+		dataType: string
+		lineageTag: 75903d9f-604e-4909-89e4-a0e501a6b319
+		summarizeBy: none
+		sourceColumn: ClientId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Société
+		dataType: string
+		lineageTag: b36c9fbe-b6f2-474f-8239-590a4973a100
+		summarizeBy: none
+		sourceColumn: Société
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contact
+		dataType: string
+		lineageTag: ebed1675-57b4-4b46-a779-92671c785d5f
+		summarizeBy: none
+		sourceColumn: Contact
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContactTitre
+		dataType: string
+		lineageTag: cc4ee165-cbae-4336-91b1-640659638582
+		summarizeBy: none
+		sourceColumn: ContactTitre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adresse
+		dataType: string
+		lineageTag: 4bf9ce61-787c-4efc-8675-54466dd895ac
+		summarizeBy: none
+		sourceColumn: Adresse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ville
+		dataType: string
+		lineageTag: d4a0e0db-f75a-4b83-84aa-6124ca8e9187
+		summarizeBy: none
+		sourceColumn: Ville
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: eb7e933c-37f7-4361-bf07-2608944bb651
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodePostal
+		dataType: string
+		lineageTag: 8809f1b5-2333-44d3-919a-679fe4794e53
+		summarizeBy: none
+		sourceColumn: CodePostal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pays
+		dataType: string
+		lineageTag: 06af1aa4-ad6a-4455-bb37-d5dedbe00481
+		summarizeBy: none
+		sourceColumn: Pays
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telephone
+		dataType: string
+		lineageTag: 0858ba69-d4bf-467a-b123-24093e4a9a29
+		summarizeBy: none
+		sourceColumn: Telephone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fax
+		dataType: string
+		lineageTag: fc4bc96c-2958-4baf-8a0d-c3721d872c8c
+		summarizeBy: none
+		sourceColumn: Fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Commandes Client' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( Commande[CommandeId] )
+			)
+		formatString: 0
+		lineageTag: 5bf3ed9d-375b-49b4-ae4e-f91cd364c5bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Typologie Client' =
+			
+			VAR NbCommandes = Client[Nombre Commandes Client]
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        NbCommandes <= 10, "CLIENT OCCASIONNEL",
+			        NbCommandes <= 20, "CLIENT FREQUENT",
+			        NbCommandes <= 30, "CLIENT FIDEL",
+			        "SUPER CLIENT"
+			    )
+		lineageTag: caa69639-400e-4cd7-a1ac-3aec35babd47
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column AdresseComplete
+		dataType: string
+		lineageTag: 7f004b32-d549-4f9f-9175-88233acede5c
+		summarizeBy: none
+		sourceColumn: AdresseComplete
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Client = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_Client = Ventes{[Schema="dbo",Item="Client"]}[Data],
+				    #"Colonnes renommées" = Table.RenameColumns(dbo_Client,{{"NomSociete", "Société"}, {"ContactNom", "Contact"}}),
+				    #"Espaces supprimés" = Table.TransformColumns(#"Colonnes renommées",{{"ClientId", Text.Trim, type text}}),
+				    #"Texte nettoyé" = Table.TransformColumns(#"Espaces supprimés",{{"ClientId", Text.Clean, type text}}),
+				    #"Espaces supprimés1" = Table.TransformColumns(#"Texte nettoyé",{{"ClientId", Text.Trim, type text}, {"Société", Text.Trim, type text}, {"Contact", Text.Trim, type text}, {"ContactTitre", Text.Trim, type text}, {"Adresse", Text.Trim, type text}, {"Ville", Text.Trim, type text}, {"Region", Text.Trim, type text}, {"CodePostal", Text.Trim, type text}, {"Pays", Text.Trim, type text}, {"Telephone", Text.Trim, type text}, {"Fax", Text.Trim, type text}}),
+				    #"Espaces supprimés2" = Table.TransformColumns(#"Espaces supprimés1",{{"ClientId", Text.Trim, type text}, {"Société", Text.Trim, type text}, {"Contact", Text.Trim, type text}, {"ContactTitre", Text.Trim, type text}, {"Adresse", Text.Trim, type text}, {"Ville", Text.Trim, type text}, {"Region", Text.Trim, type text}, {"CodePostal", Text.Trim, type text}, {"Pays", Text.Trim, type text}, {"Telephone", Text.Trim, type text}, {"Fax", Text.Trim, type text}}),
+				    #"Texte nettoyé1" = Table.TransformColumns(#"Espaces supprimés2",{{"ClientId", Text.Clean, type text}, {"Société", Text.Clean, type text}, {"Contact", Text.Clean, type text}, {"ContactTitre", Text.Clean, type text}, {"Adresse", Text.Clean, type text}, {"Ville", Text.Clean, type text}, {"Region", Text.Clean, type text}, {"CodePostal", Text.Clean, type text}, {"Pays", Text.Clean, type text}, {"Telephone", Text.Clean, type text}, {"Fax", Text.Clean, type text}}),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Texte nettoyé1", "AdresseComplete", each [Adresse] & ", " & [Ville] & ", " & Text.From([CodePostal]) & ", " & [Pays]),
+				    #"Colonnes permutées" = Table.ReorderColumns(#"Personnalisée ajoutée",{"ClientId", "Société", "Contact", "ContactTitre", "Adresse", "Ville", "Region", "CodePostal", "Pays", "Telephone", "Fax", "AdresseComplete", "Commande"})
+				in
+				    #"Colonnes permutées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

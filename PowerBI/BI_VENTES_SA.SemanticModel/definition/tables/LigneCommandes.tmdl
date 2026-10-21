@@ -1,0 +1,76 @@
+table LigneCommandes
+	lineageTag: ff7923b1-c66c-48fc-81e3-6b3344056c4d
+
+	column CommandeId
+		dataType: int64
+		formatString: 0
+		lineageTag: 0110ea87-e726-430d-b871-485909bb92cc
+		summarizeBy: none
+		sourceColumn: CommandeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProduitId
+		dataType: int64
+		formatString: 0
+		lineageTag: d8adf3c0-6b2f-4579-9f2d-0a5aa8087724
+		summarizeBy: none
+		sourceColumn: ProduitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrixUnitaire
+		dataType: double
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: a601538c-b263-4c4e-aba4-e58cf6908c86
+		summarizeBy: sum
+		sourceColumn: PrixUnitaire
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column Quantite
+		dataType: int64
+		formatString: 0
+		lineageTag: b807e63f-906f-4911-a541-6c1820354713
+		summarizeBy: sum
+		sourceColumn: Quantite
+
+		annotation SummarizationSetBy = Automatic
+
+	column Remise
+		dataType: double
+		lineageTag: b4a51d69-9f72-4d46-b375-7bdefc638791
+		summarizeBy: sum
+		sourceColumn: Remise
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Montant Ligne'
+		dataType: string
+		lineageTag: f3bfa315-d107-46cc-acf0-b9ec2492d3ca
+		summarizeBy: none
+		sourceColumn: Montant Ligne
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LigneCommandes = m
+		mode: import
+		queryGroup: Faits
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_LigneCommandes = Ventes{[Schema="dbo",Item="LigneCommandes"]}[Data],
+				    #"Personnalisée ajoutée" = Table.AddColumn(dbo_LigneCommandes, "Montant Ligne", each [PrixUnitaire] * [Quantite] * (1 - [Remise])),
+				    #"Type modifié" = Table.TransformColumnTypes(#"Personnalisée ajoutée",{{"PrixUnitaire", type number}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

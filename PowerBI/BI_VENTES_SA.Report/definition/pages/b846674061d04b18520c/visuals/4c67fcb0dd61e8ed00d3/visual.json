@@ -1,0 +1,219 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "4c67fcb0dd61e8ed00d3",
+  "position": {
+    "x": 790.14218009478668,
+    "y": 295.73459715639808,
+    "z": 13000,
+    "height": 414.02843601895734,
+    "width": 477.7251184834123,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Employe"
+                    }
+                  },
+                  "Property": "Nom complet"
+                }
+              },
+              "queryRef": "Employe.Nom complet",
+              "nativeQueryRef": "Nom",
+              "displayName": "Nom"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Employe"
+                    }
+                  },
+                  "Property": "Ville"
+                }
+              },
+              "queryRef": "Employe.Ville",
+              "nativeQueryRef": "Ville"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Employe"
+                    }
+                  },
+                  "Property": "Pays"
+                }
+              },
+              "queryRef": "Employe.Pays",
+              "nativeQueryRef": "Pays"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Commandes Moyennes par Employé"
+                }
+              },
+              "queryRef": "_Mesures.Commandes Moyennes par Employé",
+              "nativeQueryRef": "Commandes",
+              "displayName": "Commandes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "Qte Vendue"
+                }
+              },
+              "queryRef": "_Mesures.Qte Vendue",
+              "nativeQueryRef": "Qte Vendue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Mesures"
+                    }
+                  },
+                  "Property": "CA Moyen par Employé"
+                }
+              },
+              "queryRef": "_Mesures.CA Moyen par Employé",
+              "nativeQueryRef": "CA Moyen",
+              "displayName": "CA Moyen"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Mesures"
+                  }
+                },
+                "Property": "Qte Vendue"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.69766553848825D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Employe.Nom complet"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "60.58837513514159D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Employe.Ville"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6EA8FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'AlternatingRowsNew'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

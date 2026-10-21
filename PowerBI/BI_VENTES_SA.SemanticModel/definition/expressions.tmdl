@@ -1,0 +1,170 @@
+expression CA_Employe_Annee =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_CA_Employe_Annee = Ventes{[Schema="dbo",Item="CA_Employe_Annee"]}[Data],
+		    #"Lignes triées" = Table.Sort(dbo_CA_Employe_Annee,{{"CA", Order.Ascending}})
+		in
+		    #"Lignes triées"
+	lineageTag: 644f7745-d5d2-4c62-984c-8914454150ae
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression catalogue_produit =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_catalogue_produit = Ventes{[Schema="dbo",Item="catalogue_produit"]}[Data]
+		in
+		    dbo_catalogue_produit
+	lineageTag: f8233c70-3f87-4c5a-acfd-d58e6197acbf
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression CLIENT_ANGLAIS =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_CLIENT_ANGLAIS = Ventes{[Schema="dbo",Item="CLIENT_ANGLAIS"]}[Data]
+		in
+		    dbo_CLIENT_ANGLAIS
+	lineageTag: 8e9fd263-481b-4a9b-9ae4-9eb8457fb940
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Produits_En_Rupture =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_Produits_En_Rupture = Ventes{[Schema="dbo",Item="Produits_En_Rupture"]}[Data]
+		in
+		    dbo_Produits_En_Rupture
+	lineageTag: 44b91e8e-05a0-42da-b741-ab4248cb39d6
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Typologie_client =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_Typologie_client = Ventes{[Schema="dbo",Item="Typologie_client"]}[Data]
+		in
+		    dbo_Typologie_client
+	lineageTag: 1e2fd150-ee18-47d0-bc21-d088910d60cb
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Collation =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_Collation = Ventes{[Schema="dbo",Item="Collation"]}[Data]
+		in
+		    dbo_Collation
+	lineageTag: 650d5907-caac-41b9-9d15-715e163b0cf5
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Division =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_Division = Ventes{[Schema="dbo",Item="Division"]}[Data]
+		in
+		    dbo_Division
+	lineageTag: ec962caa-3f15-40f0-a1ec-ee48905593d4
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Entite =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_Entite = Ventes{[Schema="dbo",Item="Entite"]}[Data]
+		in
+		    dbo_Entite
+	lineageTag: 3de065fc-c34b-499a-ae37-f36ab32c2046
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression HistoriqueSalaires =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_HistoriqueSalaires = Ventes{[Schema="dbo",Item="HistoriqueSalaires"]}[Data]
+		in
+		    dbo_HistoriqueSalaires
+	lineageTag: 9f2355ba-61a3-4623-ae89-d92c202920fa
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression LOCATAIRES =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_LOCATAIRES = Ventes{[Schema="dbo",Item="LOCATAIRES"]}[Data]
+		in
+		    dbo_LOCATAIRES
+	lineageTag: dfc9daba-8803-4238-bb94-3d4eb102c4dc
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression MAISON =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_MAISON = Ventes{[Schema="dbo",Item="MAISON"]}[Data]
+		in
+		    dbo_MAISON
+	lineageTag: 781214c6-8cca-4381-adeb-2b88411ad337
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Service =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_Service = Ventes{[Schema="dbo",Item="Service"]}[Data]
+		in
+		    dbo_Service
+	lineageTag: 88c22812-f3c3-474a-b653-56fe1d70bfeb
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression sysdiagrams =
+		let
+		    Source = Sql.Databases(".\SQLEXPRESS"),
+		    Ventes = Source{[Name="Ventes"]}[Data],
+		    dbo_sysdiagrams = Ventes{[Schema="dbo",Item="sysdiagrams"]}[Data]
+		in
+		    dbo_sysdiagrams
+	lineageTag: 496d1faa-83fe-41d6-a629-02abcf981b38
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,216 @@
+table Employe
+	lineageTag: 46a86f44-db4a-4e65-83ad-cd850477eb2b
+
+	column EmployeId
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ebcde55-af4c-4f64-9646-3ccacf671db8
+		summarizeBy: none
+		sourceColumn: EmployeId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nom
+		dataType: string
+		lineageTag: dbac3538-3ad1-41be-a527-5f19b62200a9
+		summarizeBy: none
+		sourceColumn: Nom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prenom
+		dataType: string
+		lineageTag: 2d6ff194-7e9d-423b-9aab-0c8e5d83dc6b
+		summarizeBy: none
+		sourceColumn: Prenom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Titre
+		dataType: string
+		lineageTag: b0edc05c-ff06-4d82-8e56-40d12f35bd7f
+		summarizeBy: none
+		sourceColumn: Titre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Civilite
+		dataType: string
+		lineageTag: e53da11b-92f9-4134-8236-6f7496bf312f
+		summarizeBy: none
+		sourceColumn: Civilite
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sexe
+		dataType: string
+		lineageTag: d4ed2cc5-8c95-410c-b539-a86556b6ee41
+		summarizeBy: none
+		sourceColumn: Sexe
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateNaissance
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c6f32e98-2998-4e51-b841-b29094c3f33f
+		summarizeBy: none
+		sourceColumn: DateNaissance
+
+		variation Variation
+			isDefault
+			relationship: d07f2194-6051-4a2b-a11e-4a26520f3d06
+			defaultHierarchy: LocalDateTable_c3da0f16-f8da-45c2-9884-a520bbf6621c.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateEmbauche
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 15eb5202-8884-47ab-a064-3b6862f15372
+		summarizeBy: none
+		sourceColumn: DateEmbauche
+
+		variation Variation
+			isDefault
+			relationship: fda8350e-c39c-4280-b89e-e7da95666785
+			defaultHierarchy: LocalDateTable_e0751203-7931-4fb9-ac3e-f5b9cca54ea6.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Adresse
+		dataType: string
+		lineageTag: 6eaeb36f-645c-491a-a5a6-8bbf54027ecd
+		summarizeBy: none
+		sourceColumn: Adresse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ville
+		dataType: string
+		lineageTag: 72d56326-f441-47e8-88be-901c0ebc3d9c
+		summarizeBy: none
+		sourceColumn: Ville
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 5743f7b0-892e-4add-97f5-0f6e57289d50
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column CodePostal
+		dataType: string
+		lineageTag: 1cde0603-3a32-4a54-88cf-fd8321fc4d46
+		summarizeBy: none
+		sourceColumn: CodePostal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pays
+		dataType: string
+		lineageTag: de656b3a-b5ae-439e-aab8-52d5701238b3
+		summarizeBy: none
+		sourceColumn: Pays
+
+		annotation SummarizationSetBy = Automatic
+
+	column TelephonePersonnel
+		dataType: string
+		lineageTag: ba85dfed-b99f-4243-a248-c30be4086d76
+		summarizeBy: none
+		sourceColumn: TelephonePersonnel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extension
+		dataType: string
+		lineageTag: d777d470-8bc7-4283-9fcc-d4bef69bd1b5
+		summarizeBy: none
+		sourceColumn: Extension
+
+		annotation SummarizationSetBy = Automatic
+
+	column DependDe
+		dataType: int64
+		formatString: 0
+		lineageTag: 597e05d3-b6b6-4a85-be1c-2bb39e578cc7
+		summarizeBy: sum
+		sourceColumn: DependDe
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalaireActuel
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 179c74a1-cca1-44ae-bceb-2b60fd1365f2
+		summarizeBy: sum
+		sourceColumn: SalaireActuel
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column Prime
+		dataType: decimal
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: bd3891b1-6d9a-4c9a-b532-e2115c6112b6
+		summarizeBy: sum
+		sourceColumn: Prime
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column DivisionId
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fcb6ac7-0033-4d36-8334-1b8cf8ada3fd
+		summarizeBy: count
+		sourceColumn: DivisionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceId
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e8da4d9-534a-4de9-9eba-4cbf4b6bdb09
+		summarizeBy: count
+		sourceColumn: ServiceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nom complet'
+		dataType: string
+		lineageTag: b329dbf6-4a27-42c5-b201-d4921cca6369
+		summarizeBy: none
+		sourceColumn: Nom complet
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Employe = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Sql.Databases(".\SQLEXPRESS"),
+				    Ventes = Source{[Name="Ventes"]}[Data],
+				    dbo_Employe = Ventes{[Schema="dbo",Item="Employe"]}[Data],
+				    #"Espaces supprimés" = Table.TransformColumns(dbo_Employe,{{"Nom", Text.Trim, type text}}),
+				    #"Texte nettoyé" = Table.TransformColumns(#"Espaces supprimés",{{"Nom", Text.Clean, type text}}),
+				    #"Espaces supprimés1" = Table.TransformColumns(#"Texte nettoyé",{{"Prenom", Text.Trim, type text}}),
+				    #"Texte nettoyé1" = Table.TransformColumns(#"Espaces supprimés1",{{"Prenom", Text.Clean, type text}}),
+				    #"Espaces supprimés2" = Table.TransformColumns(#"Texte nettoyé1",{{"Titre", Text.Trim, type text}}),
+				    #"Texte nettoyé2" = Table.TransformColumns(#"Espaces supprimés2",{{"Titre", Text.Clean, type text}}),
+				    #"Personnalisée ajoutée" = Table.AddColumn(#"Texte nettoyé2", "Nom complet", each [Prenom] & " " & [Nom]),
+				    #"Colonnes permutées" = Table.ReorderColumns(#"Personnalisée ajoutée",{"EmployeId", "Nom", "Prenom", "Nom complet", "Titre", "Civilite", "Sexe", "DateNaissance", "DateEmbauche", "Adresse", "Ville", "Region", "CodePostal", "Pays", "TelephonePersonnel", "Extension", "DependDe", "SalaireActuel", "Prime", "DivisionId", "ServiceId", "Commande", "Employe(DependDe)", "Employe(EmployeId)", "HistoriqueSalaires", "Service"})
+				in
+				    #"Colonnes permutées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

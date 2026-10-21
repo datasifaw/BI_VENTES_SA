@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "BI_VENTES_SA"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6cf32ba9-969f-4c96-b1aa-fdb3b493cb29"
+  }
+}

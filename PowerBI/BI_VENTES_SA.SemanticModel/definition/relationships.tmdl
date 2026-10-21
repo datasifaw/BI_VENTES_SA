@@ -1,0 +1,66 @@
+relationship 99db2323-4e33-4cc1-8768-7dcdd260e6f3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Commande.DateDemandee
+	toColumn: LocalDateTable_ae318a8b-4563-4b18-905f-fa32b353a6a5.Date
+
+relationship ca944347-b3ab-414e-80f1-95ea07df8cbb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Commande.DateExpedition
+	toColumn: LocalDateTable_37e59e84-1d80-4a9e-98f9-654cf17bcd41.Date
+
+relationship d07f2194-6051-4a2b-a11e-4a26520f3d06
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employe.DateNaissance
+	toColumn: LocalDateTable_c3da0f16-f8da-45c2-9884-a520bbf6621c.Date
+
+relationship fda8350e-c39c-4280-b89e-e7da95666785
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Employe.DateEmbauche
+	toColumn: LocalDateTable_e0751203-7931-4fb9-ac3e-f5b9cca54ea6.Date
+
+relationship bc7ef7a7-0830-4e0d-875c-246bf140ec01
+	fromColumn: Commande.ClientId
+	toColumn: Client.ClientId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 2745a1d2-0d56-4ac4-98c3-3b0bf6d40657
+	fromColumn: Commande.EmployeId
+	toColumn: Employe.EmployeId
+
+	annotation PBI_IsFromSource = FS
+
+relationship f5db76d4-5f67-4ca5-b0d8-07aa3061763a
+	fromColumn: Commande.TransporteurId
+	toColumn: Transporteur.TransporteurId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3705b4fe-a0a5-429b-8608-872fee61615c
+	fromColumn: LigneCommandes.CommandeId
+	toColumn: Commande.CommandeId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 2658ebfb-f67c-414a-8bcc-a53b262903e1
+	fromColumn: LigneCommandes.ProduitId
+	toColumn: Produit.ProduitId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 752e3f88-bed3-4fdd-a873-da500df1e06d
+	fromColumn: Produit.CategorieId
+	toColumn: Categorie.CategorieId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 7e648918-b484-4dae-ba3b-a1be03ba4d20
+	fromColumn: Produit.FournisseurId
+	toColumn: Fournisseur.FournisseurId
+
+	annotation PBI_IsFromSource = FS
+
+relationship 0d9b811b-0515-05a0-1478-dd93c55ae634
+	fromColumn: Commande.DateCommande
+	toColumn: Calendrier.Date
+
