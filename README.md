@@ -6,7 +6,7 @@
 
 ---
 
-## 🌟 Présentation du projet
+## 🌟 Présentation du projet :
 
 **BI_VENTES_SA** est un projet complet de Business Intelligence consacré à l'analyse des performances commerciales d'une entreprise.
 
@@ -15,6 +15,7 @@ Il repose sur une base de données relationnelle **SQL Server** et un tableau de
 L'objectif est de transformer les données transactionnelles en indicateurs décisionnels pour faciliter le suivi de l'activité commerciale, l'identification des tendances et l'analyse des performances.
 
 Le dashboard couvre sept domaines d'analyse : ventes, clients, produits, employés, expéditions, transporteurs et géographie.
+
 
 ### 🎯 Objectifs métier
 
